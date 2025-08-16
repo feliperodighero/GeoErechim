@@ -1,3 +1,12 @@
+import java.util.Properties
+import java.io.File
+
+val localProperties = Properties()
+val localPropertiesFile = File(rootProject.projectDir, "local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -8,7 +17,7 @@ plugins {
 android {
     namespace = "com.example.geoerechim"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -28,6 +37,11 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        resValue(
+            type = "string",
+            name = "google_maps_api_key",
+            value = localProperties.getProperty("GOOGLE_MAPS_API_KEY")
+        )
     }
 
     buildTypes {

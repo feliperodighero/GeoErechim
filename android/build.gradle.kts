@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Versão do Gradle Plugin Android
+        classpath("com.android.tools.build:gradle:8.1.0")
+        // Força a versão do Kotlin
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20")
+    }
+}
+
+// Repositórios para todos os projetos
 allprojects {
     repositories {
         google()
@@ -12,6 +26,7 @@ subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
+
 subprojects {
     project.evaluationDependsOn(":app")
 }
