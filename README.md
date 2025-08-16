@@ -24,10 +24,12 @@ GeoErechim é um projeto de faculdade inspirado no GeoGuessr, mas focado na cida
 ```bash
 git clone <URL_DO_REPOSITORIO>
 cd geoerechim
+```
 
 ### 2. Instalar dependências
 ```bash
 flutter pub get
+```
 
 ### 3. Configurações Android
 
@@ -35,7 +37,7 @@ flutter pub get
 - Compile SDK: versão usada pelo Flutter (flutter compileSdkVersion)
 -Gradle Kotlin DSL (android/app/build.gradle.kts) configurado para ler .env:
 
-```
+```bash
 import java.util.Properties
 import java.io.File
 
@@ -54,18 +56,20 @@ android {
         )
     }
 }
+```
 
 - AndroidManifest.xml:
-```
+```bash
 <meta-data
     android:name="com.google.android.geo.API_KEY"
     android:value="@string/google_maps_api_key"/>
+```
 
 ### 4. Configurações iOS
 
 - No arquivo ios/Runner/AppDelegate.swift:
 
-```
+
 import Flutter
 import UIKit
 import GoogleMaps
