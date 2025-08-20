@@ -14,7 +14,7 @@ class GamePage extends StatelessWidget {
       body: FlutterGoogleStreetView(
         // Aqui usamos o LatLng do flutter_google_street_view
         initPos: LatLng(-27.6345, -52.2730),
-        streetNamesEnabled: true,
+        streetNamesEnabled: false,
         userNavigationEnabled: true,
         zoomGesturesEnabled: true,
       ),

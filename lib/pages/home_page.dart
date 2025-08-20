@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geoerechim/widgets/custom_buttom.dart';
 import 'game_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,16 +9,25 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("GeoErechim")),
+      backgroundColor: const Color(0xFF0E3321),
       body: Center(
-        child: CustomButton(
-          text: "Jogar",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const GamePage()),
-            );
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('lib/assets/images/GeoErechimLogo.png', height: 70,),
+
+            const SizedBox(height: 300),
+
+            CustomButton(
+              text: "Jogar",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GamePage()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
