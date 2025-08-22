@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'pages/home_page.dart';
 
-void main() {
+Future<void> main() async {
+  // garante que o Flutter está inicializado
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // carrega as variáveis de ambiente antes de rodar o app
+  await dotenv.load(fileName: ".env");
+
   runApp(const MyApp());
 }
 
