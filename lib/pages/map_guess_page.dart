@@ -28,7 +28,11 @@ class _MapGuessPageState extends State<MapGuessPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Palpite")),
+      appBar: AppBar(
+        title: const Text("Palpite"),
+        backgroundColor: const Color(0xF01F6F3F),
+        foregroundColor: Colors.white,
+      ),
       body: Stack(
         children: [
           GoogleMap(
