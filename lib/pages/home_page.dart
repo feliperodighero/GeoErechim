@@ -13,9 +13,9 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('lib/assets/images/GeoErechimLogo.png', height: 70,),
+            Image.asset('lib/assets/images/Logo.png', height: 130,),
 
-            const SizedBox(height: 300),
+            const SizedBox(height: 200),
 
             CustomButton(
               text: "Jogar",

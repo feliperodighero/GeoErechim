@@ -41,7 +41,7 @@ class _CustomButtonState extends State<CustomButton> {
           child: Text(
             widget.text,
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 24,
               color: widget.textColor,
               fontFamily: 'Lilita One',
               fontStyle: FontStyle.normal,

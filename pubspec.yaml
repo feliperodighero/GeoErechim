@@ -61,6 +61,7 @@ flutter:
 
   assets:
     - .env
+    - lib/assets/images/Logo.png
     - lib/assets/images/logoGeoErechim.svg
     - lib/assets/images/GeoErechimLogo.png
   # An image asset can refer to one or more resolution-specific "variants", see
