@@ -4,6 +4,8 @@ GeoErechim é um projeto acadêmico inspirado no GeoGuessr, mas focado exclusiva
 
 🎮 Um jogo educativo, divertido e voltado para a geografia urbana local.
 
+<img width="921" height="373" alt="Logo" src="https://github.com/user-attachments/assets/c3ac00b9-7a50-4398-bf37-afee371bc063" />
+
 ---
 ## ✨ Funcionalidades
 
