@@ -36,6 +36,7 @@ class _CustomButtonState extends State<CustomButton> {
             backgroundColor: const Color(0xF01F6F3F),
             padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 32),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            elevation: 3,
           ),
           onPressed: widget.onPressed,
           child: Text(

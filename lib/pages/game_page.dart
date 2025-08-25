@@ -97,7 +97,6 @@ class _GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Street View"),
         backgroundColor: const Color(0xFF0E3321),
         foregroundColor: Colors.white,
       ),

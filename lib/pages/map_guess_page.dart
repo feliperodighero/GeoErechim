@@ -29,15 +29,14 @@ class _MapGuessPageState extends State<MapGuessPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Palpite"),
-        backgroundColor: const Color(0xF01F6F3F),
+        backgroundColor: const Color(0xFF0E3321),
         foregroundColor: Colors.white,
       ),
       body: Stack(
         children: [
           GoogleMap(
             initialCameraPosition: CameraPosition(
-              target: widget.streetViewPosition,
+              target: LatLng(-27.638515, -52.272157),
               zoom: 14,
             ),
             onTap: _onMapTap,
@@ -58,7 +57,15 @@ class _MapGuessPageState extends State<MapGuessPage> {
                 padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 32),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               ),
-              child: const Text("Palpitar"),
+              child: const Text(
+                "Palpitar",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontFamily: 'Lilita One',
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
             ),
           ),
         ],
