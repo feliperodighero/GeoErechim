@@ -1,7 +1,6 @@
 # 🌍 GeoErechim
 
-GeoErechim é um projeto acadêmico inspirado no GeoGuessr, mas focado exclusivamente na cidade de Erechim (RS, Brasil).
-O jogador explora lugares aleatórios da cidade via Google Street View e tenta adivinhar sua localização no mapa para acumular pontos.
+GeoErechim é um projeto acadêmico inspirado no GeoGuessr, mas focado exclusivamente na cidade de Erechim (RS, Brasil). O jogador explora lugares aleatórios da cidade via Google Street View e tenta adivinhar sua localização no mapa para acumular pontos.
 
 🎮 Um jogo educativo, divertido e voltado para a geografia urbana local.
 
