@@ -1,7 +1,19 @@
-# GeoErechim
+# 🌍 GeoErechim
 
-GeoErechim é um projeto de faculdade inspirado no GeoGuessr, mas focado na cidade de Erechim (RS). O app permite que o usuário explore lugares aleatórios na cidade via Street View e tente adivinhar a localização para ganhar pontos.
+GeoErechim é um projeto acadêmico inspirado no GeoGuessr, mas focado exclusivamente na cidade de Erechim (RS, Brasil).
+O jogador explora lugares aleatórios da cidade via Google Street View e tenta adivinhar sua localização no mapa para acumular pontos.
 
+🎮 Um jogo educativo, divertido e voltado para a geografia urbana local.
+
+---
+## ✨ Funcionalidades
+
+- Exploração de pontos aleatórios de Erechim via Street View.
+- Sistema de pontuação baseado na distância entre o palpite e o local real.
+- Exibição de mapa interativo com marcadores e linhas de comparação.
+- Ranking por estrelas ⭐ baseado na precisão.
+- Suporte a Android (e iOS futuramente).
+  
 ---
 
 ## 📦 Requisitos do Projeto
@@ -29,6 +41,18 @@ cd geoerechim
 ### 2. Instalar dependências
 ```bash
 flutter pub get
+```
+
+### 3. Criar arquivo .env na raiz
+```bash
+GOOGLE_MAPS_API_KEY=SUA_CHAVE_AQUI
+```
+
+### 4. Rodar o emulador ou conectar dispositivo físico
+
+### 5. Executar o app
+```bash
+flutter run
 ```
 
 ## Checklist para rodar sem erros
