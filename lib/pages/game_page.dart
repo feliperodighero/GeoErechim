@@ -5,10 +5,17 @@ import 'package:geoerechim/pages/map_guess_page.dart';
 import 'package:geoerechim/pages/result_page.dart';
 import 'package:geoerechim/utils/calculate_distance.dart';
 import 'package:geoerechim/utils/calculate_points.dart';
+import 'package:geoerechim/utils/game_mode_config.dart';
+import 'package:geoerechim/utils/enums/game_modes.dart';
 import 'package:geoerechim/services/street_view_service.dart';
 
 class GamePage extends StatefulWidget {
-  const GamePage({super.key});
+  final GameMode mode;
+
+  const GamePage({
+    super.key,
+    required this.mode,
+  });
 
   @override
   State<GamePage> createState() => _GamePageState();
@@ -153,11 +160,12 @@ class _GamePageState extends State<GamePage> {
     return Stack(
       children: [
         streetview.FlutterGoogleStreetView(
-          key: ValueKey(position), // position já não é mais null aqui
+          key: ValueKey(position),
           initPos: position!,
           streetNamesEnabled: false,
-          userNavigationEnabled: true,
-          zoomGesturesEnabled: true,
+          userNavigationEnabled: GameModeConfig.userNavigation(widget.mode),
+          zoomGesturesEnabled: GameModeConfig.zoomEnabled(widget.mode),
+          panningGesturesEnabled: GameModeConfig.panningEnabled(widget.mode),
           onStreetViewCreated: (controller) {
             _controller = controller;
           },

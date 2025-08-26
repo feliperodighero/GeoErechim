@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geoerechim/widgets/custom_buttom.dart';
-import 'game_page.dart';
+import 'games_mode_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GamePage()),
+                  MaterialPageRoute(builder: (context) => const GameModesPage()),
                 );
               },
             ),
