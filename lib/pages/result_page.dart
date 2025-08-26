@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geoerechim/utils/calculate_distance.dart';
 import 'package:geoerechim/utils/calculate_stars.dart';
 import 'package:geoerechim/utils/calculate_zoom_map.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class ResultPage extends StatelessWidget {
   final LatLng streetViewPosition;
@@ -24,6 +25,9 @@ class ResultPage extends StatelessWidget {
     );
     final int stars = calculateStars(distance);
 
+    // Definindo a porcentagem para o gráfico
+    final double percent = (points / 5000).clamp(0.0, 1.0);
+
     return Scaffold(
       backgroundColor: const Color(0xFF0E3321),
       appBar: AppBar(
@@ -38,7 +42,7 @@ class ResultPage extends StatelessWidget {
           children: [
             // Title
             const Text(
-              "Sua Pontuação",
+              "Teu placar, tchê!",
               style: TextStyle(
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
@@ -48,13 +52,21 @@ class ResultPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Points display
-            Text(
-              "$points / 5000",
-              style: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFFFD700),
+            // Gráfico Circu lar de Pontuação
+            CircularPercentIndicator(
+              radius: 80.0,
+              lineWidth: 12.0,
+              percent: percent,
+              progressColor: const Color(0xFFFFD700),
+              backgroundColor: Colors.white24,
+              circularStrokeCap: CircularStrokeCap.round,
+              center: Text(
+                "$points / 5000",
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFFD700),
+                ),
               ),
             ),
 
@@ -73,6 +85,8 @@ class ResultPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 30),
+
+            // Google Map mostrando os pontos
             Container(
               height: 300,
               margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -100,7 +114,7 @@ class ResultPage extends StatelessWidget {
                     Marker(
                       markerId: const MarkerId('guess'),
                       position: guessedPosition,
-                      icon: AssetMapBitmap('lib/assets/images/personPin.png',  bitmapScaling: MapBitmapScaling.auto, width: 40),
+                      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
                       infoWindow: const InfoWindow(title: 'Seu Palpite'),
                     ),
                   },
@@ -148,20 +162,10 @@ class ResultPage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 40),
-
-            // Next Round Button
-            const Text(
-              "Próxima rodada?",
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-
             const SizedBox(height: 20),
 
+            // Next Round Button
+            const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, true);

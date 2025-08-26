@@ -31,8 +31,8 @@ class GameModesPage extends StatelessWidget {
             icon: Icons.flag,
             title: "Praça da Bandeira",
             description:
-                "Modo livre: você pode andar, dar zoom e explorar a cidade.",
-            difficulty: "Fácil",
+                "Modo livre: pode dar uma banda, dar zoom e gurizar explorando cada canto da cidade!",
+            difficulty: "Barbada",
             record: 4200,
             onTap: () {
               Navigator.push(
@@ -45,8 +45,8 @@ class GameModesPage extends StatelessWidget {
             icon: Icons.castle,
             title: "Castelinho",
             description:
-                "Modo estático: você não pode andar, apenas girar a câmera e dar zoom.",
-            difficulty: "Médio",
+                "Modo estático: parado feito poste, só roda a câmera e aproxima, barbaridade!",
+            difficulty: "De boa",
             record: 1500,
             onTap: () {
               Navigator.push(
@@ -59,8 +59,8 @@ class GameModesPage extends StatelessWidget {
             icon: Icons.church,
             title: "Seminário",
             description:
-                "Modo desafiador: você não pode andar, girar a câmera ou dar zoom. Use apenas o que vê para adivinhar a localização.",
-            difficulty: "Difícil",
+                "Modo desafiador: bagual de verdade não precisa andar, girar nem dar zoom. Só com a vista descobre o ponto!",
+            difficulty: "Peleia",
             record: 2580,
             onTap: () {
               Navigator.push(
