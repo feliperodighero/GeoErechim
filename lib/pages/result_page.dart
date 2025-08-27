@@ -235,7 +235,7 @@ class ResultPage extends StatelessWidget {
                 elevation: 3,
               ),
               child: const Text(
-                "Próxima",
+                "Próxima Rodada",
                 style: TextStyle(
                   fontSize: 20,
                   fontFamily: 'Lilita One',
