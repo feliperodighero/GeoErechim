@@ -61,8 +61,11 @@ flutter:
   assets:
     - .env
     - lib/assets/images/Logo.png
-    - lib/assets/images/personPin.png
     - lib/assets/images/mascotGeoErechim.png
+    - lib/assets/images/personPin.png
+    - lib/assets/images/trohpyGold.svg
+    - lib/assets/images/trophyBronze.svg
+    - lib/assets/images/trophySilver.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

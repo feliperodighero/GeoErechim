@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_google_street_view/flutter_google_street_view.dart' as streetview;
+import 'package:flutter_google_street_view/flutter_google_street_view.dart'
+    as streetview;
 import 'package:google_maps_flutter/google_maps_flutter.dart' as gmaps;
+import 'package:geoerechim/pages/game_summary_page.dart';
 import 'package:geoerechim/pages/map_guess_page.dart';
 import 'package:geoerechim/pages/result_page.dart';
 import 'package:geoerechim/providers/game_state.dart';
@@ -15,10 +17,7 @@ import 'package:geoerechim/widgets/score_overlay.dart';
 class GamePage extends StatefulWidget {
   final GameMode mode;
 
-  const GamePage({
-    super.key,
-    required this.mode,
-  });
+  const GamePage({super.key, required this.mode});
 
   @override
   State<GamePage> createState() => _GamePageState();
@@ -71,7 +70,10 @@ class _GamePageState extends State<GamePage> {
       context,
       MaterialPageRoute(
         builder: (context) => MapGuessPage(
-          streetViewPosition: gmaps.LatLng(position!.latitude, position!.longitude),
+          streetViewPosition: gmaps.LatLng(
+            position!.latitude,
+            position!.longitude,
+          ),
         ),
       ),
     );
@@ -87,20 +89,40 @@ class _GamePageState extends State<GamePage> {
 
       Provider.of<GameState>(context, listen: false).addRoundPoints(points);
 
-      // Navigate to ResultPage with the results
-      final nextRound = await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ResultPage(
-            streetViewPosition: gmaps.LatLng(position!.latitude, position!.longitude),
-            guessedPosition: guessedPosition,
-            points: points,
-          ),
-        ),
-      );
+      final gameState = Provider.of<GameState>(context, listen: false);
 
-      if (nextRound == true) {
-        _reloadRandomPosition(); // Reload a new random position for the next round
+      // Se ainda não for a última rodada → ResultPage
+      if (gameState.currentRound < gameState.maxRounds) {
+        final nextRound = await Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResultPage(
+              streetViewPosition: gmaps.LatLng(
+                position!.latitude,
+                position!.longitude,
+              ),
+              guessedPosition: guessedPosition,
+              points: points,
+            ),
+          ),
+        );
+
+        if (nextRound == true) {
+          _reloadRandomPosition();
+        }
+      } else {
+        // Se for a última rodada → SummaryPage
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => GameSummaryPage(
+              totalRodadas: gameState.maxRounds,
+              rodadaAtual: gameState.currentRound,
+              pontosRodada: points,
+              pontosTotais: gameState.totalPoints,
+            ),
+          ),
+        );
       }
     }
   }
@@ -124,10 +146,7 @@ class _GamePageState extends State<GamePage> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF0E3321),
-            Color(0xFF1B4D35),
-          ],
+          colors: [Color(0xFF0E3321), Color(0xFF1B4D35)],
         ),
       ),
       child: const Center(
@@ -150,10 +169,7 @@ class _GamePageState extends State<GamePage> {
             SizedBox(height: 8),
             Text(
               'Encontrando um local com Street View',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 14,
-              ),
+              style: TextStyle(color: Colors.white70, fontSize: 14),
             ),
           ],
         ),
@@ -181,11 +197,7 @@ class _GamePageState extends State<GamePage> {
           },
         ),
 
-        const Positioned(
-          top: 20,
-          right: 20,
-          child: ScoreOverlay(),
-        ),
+        const Positioned(top: 20, right: 20, child: ScoreOverlay()),
 
         Positioned(
           bottom: 20,

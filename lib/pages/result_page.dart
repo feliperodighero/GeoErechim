@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'game_page.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geoerechim/providers/game_state.dart';
 import 'package:geoerechim/utils/calculate_distance.dart';
 import 'package:geoerechim/utils/calculate_stars.dart';
 import 'package:geoerechim/utils/calculate_zoom_map.dart';
+import 'package:geoerechim/utils/enums/game_modes.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class ResultPage extends StatelessWidget {
@@ -121,7 +123,7 @@ class ResultPage extends StatelessWidget {
                           ),
                         ),
                         CircularPercentIndicator(
-                          radius: 70.0,
+                          radius: 60.0,
                           lineWidth: 10.0,
                           percent: percent,
                           progressColor: const Color(0xFFFFD700),
@@ -223,31 +225,41 @@ class ResultPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: () {
-                Provider.of<GameState>(context, listen: false).nextRound();
-                Navigator.pop(context, true);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xF01F6F3F),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 15,
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Provider.of<GameState>(
+                        context,
+                        listen: false,
+                      ).nextRound();
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const GamePage(mode: GameMode.pracaDaBandeira,)));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xF01F6F3F),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 15,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      elevation: 3,
+                    ),
+                    icon: const Icon(Icons.arrow_forward),
+                    label: const Text(
+                      "Próxima Rodada",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Lilita One',
+                        fontStyle: FontStyle.normal,
+                      ),
+                    ),
+                  ),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                elevation: 3,
-              ),
-              child: const Text(
-                "Próxima Rodada",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Lilita One',
-                  fontStyle: FontStyle.normal,
-                ),
-              ),
+              ],
             ),
           ],
         ),
