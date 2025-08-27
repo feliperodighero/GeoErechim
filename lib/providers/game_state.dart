@@ -10,6 +10,12 @@ class GameState extends ChangeNotifier {
     if (currentRound <= maxRounds) {
       totalPoints += points;
       roundPoints.add(points);
+      notifyListeners();
+    }
+  }
+
+  void nextRound() {
+    if (currentRound < maxRounds) {
       currentRound++;
       notifyListeners();
     } else {

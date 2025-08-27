@@ -217,10 +217,7 @@ class ResultPage extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () {
-                Provider.of<GameState>(
-                  context,
-                  listen: false,
-                ).addRoundPoints(points);
+                Provider.of<GameState>(context, listen: false).nextRound();
                 Navigator.pop(context, true);
               },
               style: ElevatedButton.styleFrom(

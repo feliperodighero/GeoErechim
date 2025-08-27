@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_google_street_view/flutter_google_street_view.dart' as streetview;
 import 'package:google_maps_flutter/google_maps_flutter.dart' as gmaps;
 import 'package:geoerechim/pages/map_guess_page.dart';
 import 'package:geoerechim/pages/result_page.dart';
+import 'package:geoerechim/providers/game_state.dart';
 import 'package:geoerechim/utils/calculate_distance.dart';
 import 'package:geoerechim/utils/calculate_points.dart';
 import 'package:geoerechim/utils/game_mode_config.dart';
@@ -81,6 +83,8 @@ class _GamePageState extends State<GamePage> {
       );
 
       final points = calculatePoints(distance);
+
+      Provider.of<GameState>(context, listen: false).addRoundPoints(points);
 
       // Navigate to ResultPage with the results
       final nextRound = await Navigator.push(
