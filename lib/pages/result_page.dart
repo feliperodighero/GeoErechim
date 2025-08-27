@@ -71,47 +71,54 @@ class ResultPage extends StatelessWidget {
                     const SizedBox(height: 15),
 
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Column(
-                          children: [
-                            Row(
-                              children: List.generate(5, (index) {
-                                return Icon(
-                                  index < stars
-                                      ? Icons.star
-                                      : Icons.star_border,
-                                  color: const Color(0xFFFFD700),
-                                  size: 24,
-                                );
-                              }),
-                            ),
-                            const SizedBox(height: 10),
-                            Consumer<GameState>(
-                              builder: (context, gameState, _) {
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Rodada: ${gameState.currentRound}/${gameState.maxRounds}",
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: List.generate(5, (index) {
+                                  return Icon(
+                                    index < stars
+                                        ? Icons.star
+                                        : Icons.star_border,
+                                    color: const Color(0xFFFFD700),
+                                    size: 24,
+                                  );
+                                }),
+                              ),
+                              const SizedBox(height: 10),
+                              Consumer<GameState>(
+                                builder: (context, gameState, _) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Rodada: ${gameState.currentRound}/${gameState.maxRounds}",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      "Total de Pontos: ${gameState.totalPoints}",
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        "Total de Pontos: ${gameState.totalPoints}",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
-                          ],
+                                    ],
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                         CircularPercentIndicator(
                           radius: 70.0,
@@ -153,6 +160,7 @@ class ResultPage extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 16,
                             color: Color(0xFFFFD700),
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
