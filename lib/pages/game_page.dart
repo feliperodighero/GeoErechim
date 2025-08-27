@@ -10,6 +10,7 @@ import 'package:geoerechim/utils/calculate_points.dart';
 import 'package:geoerechim/utils/game_mode_config.dart';
 import 'package:geoerechim/utils/enums/game_modes.dart';
 import 'package:geoerechim/services/street_view_service.dart';
+import 'package:geoerechim/widgets/score_overlay.dart';
 
 class GamePage extends StatefulWidget {
   final GameMode mode;
@@ -179,6 +180,13 @@ class _GamePageState extends State<GamePage> {
             }
           },
         ),
+
+        const Positioned(
+          top: 20,
+          right: 20,
+          child: ScoreOverlay(),
+        ),
+
         Positioned(
           bottom: 20,
           right: 20,

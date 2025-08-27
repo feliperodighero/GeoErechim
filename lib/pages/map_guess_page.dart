@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geoerechim/widgets/score_overlay.dart';
 
 class MapGuessPage extends StatefulWidget {
   final LatLng streetViewPosition;
@@ -45,6 +46,13 @@ class _MapGuessPageState extends State<MapGuessPage> {
                 : {},
             onMapCreated: (controller) => mapController = controller,
           ),
+
+          const Positioned(
+            top: 20,
+            right: 20,
+            child: ScoreOverlay(),
+          ),
+
           Positioned(
             bottom: 20,
             left: 80,
