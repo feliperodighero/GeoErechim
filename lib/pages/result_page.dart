@@ -73,24 +73,6 @@ class ResultPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        CircularPercentIndicator(
-                          radius: 70.0,
-                          lineWidth: 10.0,
-                          percent: percent,
-                          progressColor: const Color(0xFFFFD700),
-                          backgroundColor: Colors.white24,
-                          circularStrokeCap: CircularStrokeCap.round,
-                          center: Text(
-                            "$points\n/ 5000",
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFFD700),
-                            ),
-                          ),
-                        ),
-
                         Column(
                           children: [
                             Row(
@@ -100,11 +82,10 @@ class ResultPage extends StatelessWidget {
                                       ? Icons.star
                                       : Icons.star_border,
                                   color: const Color(0xFFFFD700),
-                                  size: 30,
+                                  size: 24,
                                 );
                               }),
                             ),
-
                             const SizedBox(height: 10),
                             Consumer<GameState>(
                               builder: (context, gameState, _) {
@@ -132,6 +113,23 @@ class ResultPage extends StatelessWidget {
                             ),
                           ],
                         ),
+                        CircularPercentIndicator(
+                          radius: 70.0,
+                          lineWidth: 10.0,
+                          percent: percent,
+                          progressColor: const Color(0xFFFFD700),
+                          backgroundColor: Colors.white24,
+                          circularStrokeCap: CircularStrokeCap.round,
+                          center: Text(
+                            "$points\n/ 5000",
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFFFD700),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
 
@@ -154,7 +152,7 @@ class ResultPage extends StatelessWidget {
                               : "${distance.toStringAsFixed(0)} m do ponto correto",
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Colors.white,
+                            color: Color(0xFFFFD700),
                           ),
                         ),
                       ],
@@ -219,7 +217,10 @@ class ResultPage extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () {
-                Provider.of<GameState>(context, listen: false).addRoundPoints(points);
+                Provider.of<GameState>(
+                  context,
+                  listen: false,
+                ).addRoundPoints(points);
                 Navigator.pop(context, true);
               },
               style: ElevatedButton.styleFrom(
