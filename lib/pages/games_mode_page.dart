@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'game_page.dart';
+import 'package:geoerechim/providers/game_state.dart';
 import 'package:geoerechim/utils/enums/game_modes.dart';
 import 'package:geoerechim/widgets/game_mode_card.dart';
 
@@ -31,10 +33,10 @@ class GameModesPage extends StatelessWidget {
             icon: Icons.flag,
             title: "Praça da Bandeira",
             description:
-                "Modo livre: pode dar uma banda, dar zoom e gurizar explorando cada canto da cidade!",
+                "Modo livre: pode dar uma banda, dar zoom e explorar cada canto da cidade!",
             difficulty: "Barbada",
-            record: 4200,
             onTap: () {
+              Provider.of<GameState>(context, listen: false).resetGame();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const GamePage(mode: GameMode.pracaDaBandeira,)),
@@ -46,9 +48,9 @@ class GameModesPage extends StatelessWidget {
             title: "Castelinho",
             description:
                 "Modo estático: parado feito poste, só roda a câmera e aproxima, barbaridade!",
-            difficulty: "De boa",
-            record: 1500,
+            difficulty: "Mais ou Menos",
             onTap: () {
+              Provider.of<GameState>(context, listen: false).resetGame();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const GamePage(mode: GameMode.castelinho,)),
@@ -59,10 +61,10 @@ class GameModesPage extends StatelessWidget {
             icon: Icons.church,
             title: "Seminário",
             description:
-                "Modo desafiador: bagual de verdade não precisa andar, girar nem dar zoom. Só com a vista descobre o ponto!",
+                "Modo desafiador: bagual de verdade não precisa andar, girar nem dar zoom. Só com a imagem descobre o local!",
             difficulty: "Peleia",
-            record: 2580,
             onTap: () {
+              Provider.of<GameState>(context, listen: false).resetGame();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const GamePage(mode: GameMode.seminario,)),

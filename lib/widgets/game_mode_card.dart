@@ -5,7 +5,6 @@ class GameModeCard extends StatelessWidget {
   final String title;
   final String description;
   final String difficulty;
-  final int record;
   final VoidCallback onTap;
 
   const GameModeCard({
@@ -14,7 +13,6 @@ class GameModeCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.difficulty,
-    required this.record,
     required this.onTap,
   });
 
@@ -64,13 +62,6 @@ class GameModeCard extends StatelessWidget {
                             fontSize: 14,
                             color: Color(0xFFFFD700),
                             fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          "Recorde: $record",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
                           ),
                         ),
                       ],

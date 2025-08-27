@@ -13,7 +13,19 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('lib/assets/images/Logo.png', height: 130,),
+            Image.asset(
+              'lib/assets/images/Logo.png',
+              height: 130,
+            ),
+            const Text(
+              "Explore a geografia de Erechim de forma divertida!",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
+              textAlign: TextAlign.center,
+            ),
 
             const SizedBox(height: 200),
 

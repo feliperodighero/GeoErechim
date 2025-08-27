@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:geoerechim/providers/game_state.dart';
 import 'pages/home_page.dart';
 
 Future<void> main() async {
-  // garante que o Flutter está inicializado
   WidgetsFlutterBinding.ensureInitialized();
-
-  // carrega as variáveis de ambiente antes de rodar o app
   await dotenv.load(fileName: ".env");
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => GameState()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
