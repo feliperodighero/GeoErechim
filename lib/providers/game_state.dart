@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class GameState extends ChangeNotifier {
+  String playerName = "";
   int totalPoints = 0;
   int currentRound = 1;
-  final int maxRounds = 10;
+  final int maxRounds = 2;
   List<int> roundPoints = [];
+
+  void setPlayerName(String name) {
+    playerName = name;
+    notifyListeners();
+  }
 
   void addRoundPoints(int points) {
     if (currentRound <= maxRounds) {

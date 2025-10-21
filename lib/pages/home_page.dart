@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geoerechim/widgets/custom_buttom.dart';
 import 'games_mode_page.dart';
+import 'package:geoerechim/widgets/player_name_dialog.dart';
+import 'package:provider/provider.dart';
+import 'package:geoerechim/providers/game_state.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,15 +29,24 @@ class HomePage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-
             const SizedBox(height: 200),
-
             CustomButton(
               text: "Jogar",
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const GameModesPage()),
+                showDialog(
+                  context: context,
+                  builder: (context) => PlayerNameDialog(
+                    onConfirm: (playerName) {
+                      Provider.of<GameState>(context, listen: false)
+                          .setPlayerName(playerName);
+                      Navigator.of(context).pop(); // Fecha o diálogo
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const GameModesPage()),
+                      );
+                    },
+                  ),
                 );
               },
             ),
