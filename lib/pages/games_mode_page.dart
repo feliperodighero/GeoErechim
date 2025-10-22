@@ -4,9 +4,7 @@ import 'game_page.dart';
 import 'package:geoerechim/providers/game_state.dart';
 import 'package:geoerechim/utils/enums/game_modes.dart';
 import 'package:geoerechim/widgets/game_mode_card.dart';
-import 'package:geoerechim/widgets/custom_buttom.dart';
-import 'package:geoerechim/pages/ranking_page.dart';
-
+import 'package:geoerechim/widgets/top_three_ranking.dart'; // Importe o novo widget
 
 class GameModesPage extends StatelessWidget {
   const GameModesPage({super.key});
@@ -28,6 +26,7 @@ class GameModesPage extends StatelessWidget {
         ),
         centerTitle: true,
         elevation: 0,
+        automaticallyImplyLeading: false, // Remove a seta de voltar
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -42,7 +41,9 @@ class GameModesPage extends StatelessWidget {
               Provider.of<GameState>(context, listen: false).resetGame();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const GamePage(mode: GameMode.pracaDaBandeira,)),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const GamePage(mode: GameMode.pracaDaBandeira)),
               );
             },
           ),
@@ -56,7 +57,9 @@ class GameModesPage extends StatelessWidget {
               Provider.of<GameState>(context, listen: false).resetGame();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const GamePage(mode: GameMode.castelinho,)),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const GamePage(mode: GameMode.castelinho)),
               );
             },
           ),
@@ -70,20 +73,15 @@ class GameModesPage extends StatelessWidget {
               Provider.of<GameState>(context, listen: false).resetGame();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const GamePage(mode: GameMode.seminario,)),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const GamePage(mode: GameMode.seminario)),
               );
             },
           ),
-           const SizedBox(height: 20),
-            CustomButton(
-              text: "Ranking",
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const RankingPage()),
-                );
-              },
-            ),
+          const SizedBox(height: 20),
+          // Substitua o CustomButton pelo novo widget TopThreeRanking
+          const TopThreeRanking(),
         ],
       ),
     );
