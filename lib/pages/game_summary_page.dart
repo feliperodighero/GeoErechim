@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geoerechim/pages/games_mode_page.dart';
+<<<<<<< HEAD
 import 'package:geoerechim/utils/enums/game_modes.dart';
 import 'package:geoerechim/services/auth_service.dart';
 import 'package:geoerechim/services/ranking_service.dart';
+=======
+import 'package:geoerechim/services/firebase_service.dart';
+import 'package:provider/provider.dart';
+import 'package:geoerechim/providers/game_state.dart';
+>>>>>>> b4e5fe076728b4236ca04f1f159c2d6b2be514da
 
 class GameSummaryPage extends StatefulWidget {
   final int totalRodadas;
@@ -58,14 +64,16 @@ class _GameSummaryPageState extends State<GameSummaryPage>
       CurvedAnimation(parent: _trophyController, curve: Curves.elasticOut),
     );
 
-    _scoreCountUp = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _scoreController, curve: Curves.easeOut),
-    );
+    _scoreCountUp = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _scoreController, curve: Curves.easeOut));
 
     _cardSlide = Tween<double>(begin: 50.0, end: 0.0).animate(
       CurvedAnimation(parent: _cardController, curve: Curves.easeOutBack),
     );
 
+    _saveResult();
     _startAnimations();
     _saveScoreToFirebase();
   }
@@ -84,6 +92,12 @@ class _GameSummaryPageState extends State<GameSummaryPage>
         finalScore: widget.pontosTotais,
       );
     }
+  }
+
+  void _saveResult() {
+    final gameState = Provider.of<GameState>(context, listen: false);
+    FirebaseService()
+        .addGameResult(gameState.playerName, widget.pontosTotais);
   }
 
   void _startAnimations() async {
@@ -138,10 +152,7 @@ class _GameSummaryPageState extends State<GameSummaryPage>
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFF0E3321),
-              Color(0xFF1B4D35),
-            ],
+            colors: [Color(0xFF0E3321), Color(0xFF1B4D35)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -182,10 +193,7 @@ class _GameSummaryPageState extends State<GameSummaryPage>
                               ),
                             ],
                           ),
-                          child: SvgPicture.asset(
-                            trophyPath,
-                            height: 120,
-                          ),
+                          child: SvgPicture.asset(trophyPath, height: 120),
                         ),
                       );
                     },
@@ -204,19 +212,35 @@ class _GameSummaryPageState extends State<GameSummaryPage>
                         offset: Offset(0, _cardSlide.value),
                         child: Column(
                           children: [
-                            _buildInfoCard("Rodadas Jogadas", "${widget.rodadaAtual} / ${widget.totalRodadas}", Icons.casino),
+                            _buildInfoCard(
+                              "Rodadas Jogadas",
+                              "${widget.rodadaAtual} / ${widget.totalRodadas}",
+                              Icons.casino,
+                            ),
                             AnimatedBuilder(
                               animation: _scoreCountUp,
                               builder: (context, child) {
-                                final animatedScore = (_scoreCountUp.value * widget.pontosRodada).round();
-                                return _buildInfoCard("Pontos da Última Rodada", "$animatedScore", Icons.star);
+                                final animatedScore =
+                                    (_scoreCountUp.value * widget.pontosRodada)
+                                        .round();
+                                return _buildInfoCard(
+                                  "Pontos da Última Rodada",
+                                  "$animatedScore",
+                                  Icons.star,
+                                );
                               },
                             ),
                             AnimatedBuilder(
                               animation: _scoreCountUp,
                               builder: (context, child) {
-                                final animatedTotal = (_scoreCountUp.value * widget.pontosTotais).round();
-                                return _buildInfoCard("Pontuação Total", "$animatedTotal / $maxPoints", Icons.emoji_events);
+                                final animatedTotal =
+                                    (_scoreCountUp.value * widget.pontosTotais)
+                                        .round();
+                                return _buildInfoCard(
+                                  "Pontuação Total",
+                                  "$animatedTotal / $maxPoints",
+                                  Icons.emoji_events,
+                                );
                               },
                             ),
                           ],
@@ -235,11 +259,16 @@ class _GameSummaryPageState extends State<GameSummaryPage>
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(
                               context,
-                              MaterialPageRoute(builder: (context) => const GameModesPage()),
+                              MaterialPageRoute(
+                                builder: (context) => const GameModesPage(),
+                              ),
                               (route) => false,
                             );
                           },
-                          icon: const Icon(Icons.sports_esports, color: Colors.white),
+                          icon: const Icon(
+                            Icons.sports_esports,
+                            color: Colors.white,
+                          ),
                           label: const Text(
                             "Jogar Novamente",
                             style: TextStyle(
@@ -297,8 +326,8 @@ class _GameSummaryPageState extends State<GameSummaryPage>
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: performance >= 0.8
-                    ? [const Color(0xFFFFD700), const Color(0xFFFF8C00)]
-                    : performance >= 0.5
+                      ? [const Color(0xFFFFD700), const Color(0xFFFF8C00)]
+                      : performance >= 0.5
                       ? [const Color(0xFFC0C0C0), const Color(0xFF808080)]
                       : [const Color(0xFFCD7F32), const Color(0xFF8B4513)],
                 ),
@@ -310,10 +339,7 @@ class _GameSummaryPageState extends State<GameSummaryPage>
         const SizedBox(height: 8),
         Text(
           "${(performance * 100).toInt()}% de aproveitamento",
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.white70,
-          ),
+          style: const TextStyle(fontSize: 14, color: Colors.white70),
         ),
       ],
     );
@@ -335,11 +361,7 @@ class _GameSummaryPageState extends State<GameSummaryPage>
                 color: const Color(0xFF0E3321).withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
-                icon,
-                color: const Color(0xFF0E3321),
-                size: 24,
-              ),
+              child: Icon(icon, color: const Color(0xFF0E3321), size: 24),
             ),
             const SizedBox(width: 15),
             Expanded(
