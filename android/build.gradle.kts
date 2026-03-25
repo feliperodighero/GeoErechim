@@ -11,11 +11,22 @@ buildscript {
     }
 }
 
-// Repositórios para todos os projetos
+// Repositórios e configurações para todos os projetos
 allprojects {
     repositories {
         google()
         mavenCentral()
+    }
+    
+    // Força a versão do androidx.core para 1.13.1 para evitar erro de compatibilidade com o AGP 8.9+
+    configurations.all {
+        resolutionStrategy {
+            eachDependency {
+                if (requested.group == "androidx.core" && (requested.name == "core" || requested.name == "core-ktx")) {
+                    useVersion("1.13.1")
+                }
+            }
+        }
     }
 }
 

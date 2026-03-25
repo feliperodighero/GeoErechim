@@ -41,7 +41,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-<<<<<<< HEAD
+
     apiKey: 'AIzaSyCkEhvOKoOEtbloWWI2mRIZgTHnfM_TbsA',
     appId: '1:368896919076:web:5bdb0f75f6650d62043ab1',
     messagingSenderId: '368896919076',
@@ -64,67 +64,29 @@ class DefaultFirebaseOptions {
     messagingSenderId: '368896919076',
     projectId: 'geoerechim-af7e2',
     storageBucket: 'geoerechim-af7e2.firebasestorage.app',
-=======
-    apiKey: 'AIzaSyAvXPXoXExMLloHapLeeZMooiu9TcvsByU',
-    appId: '1:744761373539:web:ccf874a6923a1216a3d956',
-    messagingSenderId: '744761373539',
-    projectId: 'geoerechim-1d66d',
-    authDomain: 'geoerechim-1d66d.firebaseapp.com',
-    storageBucket: 'geoerechim-1d66d.firebasestorage.app',
-    measurementId: 'G-V0BWV92LB7',
-  );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCOlOpMilpMhb1SWexO1xSeA1eu2OhZoeE',
-    appId: '1:744761373539:android:bbf036b51b0bc57ca3d956',
-    messagingSenderId: '744761373539',
-    projectId: 'geoerechim-1d66d',
-    storageBucket: 'geoerechim-1d66d.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDEZqC0aCHRaIPwZk_3M4sIvqoT6FB5-eU',
-    appId: '1:744761373539:ios:ec4effe3d163501ea3d956',
-    messagingSenderId: '744761373539',
-    projectId: 'geoerechim-1d66d',
-    storageBucket: 'geoerechim-1d66d.firebasestorage.app',
->>>>>>> b4e5fe076728b4236ca04f1f159c2d6b2be514da
     iosBundleId: 'com.example.geoerechim',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-<<<<<<< HEAD
+
     apiKey: 'AIzaSyD5HC4oj6LzrOZ8l1JQxH2WcKCtA_btEsc',
     appId: '1:368896919076:ios:7b51e748e8cabbec043ab1',
     messagingSenderId: '368896919076',
     projectId: 'geoerechim-af7e2',
     storageBucket: 'geoerechim-af7e2.firebasestorage.app',
-=======
-    apiKey: 'AIzaSyDEZqC0aCHRaIPwZk_3M4sIvqoT6FB5-eU',
-    appId: '1:744761373539:ios:ec4effe3d163501ea3d956',
-    messagingSenderId: '744761373539',
-    projectId: 'geoerechim-1d66d',
-    storageBucket: 'geoerechim-1d66d.firebasestorage.app',
->>>>>>> b4e5fe076728b4236ca04f1f159c2d6b2be514da
+
     iosBundleId: 'com.example.geoerechim',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-<<<<<<< HEAD
+
     apiKey: 'AIzaSyCkEhvOKoOEtbloWWI2mRIZgTHnfM_TbsA',
     appId: '1:368896919076:web:463f9db556b95dd8043ab1',
     messagingSenderId: '368896919076',
     projectId: 'geoerechim-af7e2',
     authDomain: 'geoerechim-af7e2.firebaseapp.com',
     storageBucket: 'geoerechim-af7e2.firebasestorage.app',
-=======
-    apiKey: 'AIzaSyAvXPXoXExMLloHapLeeZMooiu9TcvsByU',
-    appId: '1:744761373539:web:33181ebe1cb37f14a3d956',
-    messagingSenderId: '744761373539',
-    projectId: 'geoerechim-1d66d',
-    authDomain: 'geoerechim-1d66d.firebaseapp.com',
-    storageBucket: 'geoerechim-1d66d.firebasestorage.app',
-    measurementId: 'G-HS6E3ZDFC5',
->>>>>>> b4e5fe076728b4236ca04f1f159c2d6b2be514da
+
   );
 }

@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geoerechim/pages/games_mode_page.dart';
-<<<<<<< HEAD
 import 'package:geoerechim/utils/enums/game_modes.dart';
 import 'package:geoerechim/services/auth_service.dart';
 import 'package:geoerechim/services/ranking_service.dart';
-=======
-import 'package:geoerechim/services/firebase_service.dart';
-import 'package:provider/provider.dart';
-import 'package:geoerechim/providers/game_state.dart';
->>>>>>> b4e5fe076728b4236ca04f1f159c2d6b2be514da
 
 class GameSummaryPage extends StatefulWidget {
   final int totalRodadas;
@@ -73,32 +67,40 @@ class _GameSummaryPageState extends State<GameSummaryPage>
       CurvedAnimation(parent: _cardController, curve: Curves.easeOutBack),
     );
 
-    _saveResult();
     _startAnimations();
     _saveScoreToFirebase();
   }
 
   Future<void> _saveScoreToFirebase() async {
-    final authService = AuthService();
-    final rankingService = RankingService();
-    final user = authService.currentUser;
-    
-    if (user != null) {
-      await rankingService.saveScore(
-        uid: user.uid,
-        displayName: user.displayName ?? 'Jogador Misterioso',
-        photoUrl: user.photoURL,
-        mode: widget.mode,
-        finalScore: widget.pontosTotais,
-      );
+    try {
+      final authService = AuthService();
+      final rankingService = RankingService();
+      final user = authService.currentUser;
+      
+      if (user != null) {
+        await rankingService.saveScore(
+          uid: user.uid,
+          displayName: user.displayName ?? 'Jogador Misterioso',
+          photoUrl: user.photoURL,
+          mode: widget.mode,
+          finalScore: widget.pontosTotais,
+        );
+      } else {
+        print("Usuário não logado. Pontuação não será salva no banco.");
+      }
+    } catch (e) {
+      print("Erro ao salvar pontuação: \$e");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.redAccent,
+            content: Text('Erro ao salvar pontuação! Verifique as regras do Firestore.'),
+          ),
+        );
+      }
     }
   }
 
-  void _saveResult() {
-    final gameState = Provider.of<GameState>(context, listen: false);
-    FirebaseService()
-        .addGameResult(gameState.playerName, widget.pontosTotais);
-  }
 
   void _startAnimations() async {
     await Future.delayed(const Duration(milliseconds: 300));
