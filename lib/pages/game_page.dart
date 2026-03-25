@@ -120,6 +120,7 @@ class _GamePageState extends State<GamePage> {
               rodadaAtual: gameState.currentRound,
               pontosRodada: points,
               pontosTotais: gameState.totalPoints,
+              mode: widget.mode,
             ),
           ),
         );

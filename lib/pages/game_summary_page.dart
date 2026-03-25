@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geoerechim/pages/games_mode_page.dart';
+import 'package:geoerechim/utils/enums/game_modes.dart';
+import 'package:geoerechim/services/auth_service.dart';
+import 'package:geoerechim/services/ranking_service.dart';
 
 class GameSummaryPage extends StatefulWidget {
   final int totalRodadas;
   final int rodadaAtual;
   final int pontosRodada;
   final int pontosTotais;
+  final GameMode mode;
 
   const GameSummaryPage({
     super.key,
@@ -14,6 +18,7 @@ class GameSummaryPage extends StatefulWidget {
     required this.rodadaAtual,
     required this.pontosRodada,
     required this.pontosTotais,
+    required this.mode,
   });
 
   @override
@@ -62,6 +67,23 @@ class _GameSummaryPageState extends State<GameSummaryPage>
     );
 
     _startAnimations();
+    _saveScoreToFirebase();
+  }
+
+  Future<void> _saveScoreToFirebase() async {
+    final authService = AuthService();
+    final rankingService = RankingService();
+    final user = authService.currentUser;
+    
+    if (user != null) {
+      await rankingService.saveScore(
+        uid: user.uid,
+        displayName: user.displayName ?? 'Jogador Misterioso',
+        photoUrl: user.photoURL,
+        mode: widget.mode,
+        finalScore: widget.pontosTotais,
+      );
+    }
   }
 
   void _startAnimations() async {

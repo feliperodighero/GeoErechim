@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "368896919076",
+    "project_id": "geoerechim-af7e2",
+    "storage_bucket": "geoerechim-af7e2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368896919076:android:a79cda4239846154043ab1",
+        "android_client_info": {
+          "package_name": "com.example.geoerechim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqza7VIeD1tx-znVMYMmI5pyV1b9OtevQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
